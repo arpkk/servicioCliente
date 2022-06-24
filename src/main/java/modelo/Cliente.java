@@ -68,6 +68,7 @@ public class Cliente {
     }
 
     public void mostrar() {
+        System.out.println("\n");
         System.out.println("Datos del cliente: ");
         System.out.println("Rut: " + runCliente);
         System.out.println("Nombre: " + nombreCliente);

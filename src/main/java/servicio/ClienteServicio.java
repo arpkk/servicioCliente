@@ -26,28 +26,23 @@ public class ClienteServicio {
 
     public void listarClientes() {
         if (listaCliente != null) {
-
             for (Cliente cliente : listaCliente) {
                 cliente.mostrar();
             }
-
         } else {
             System.out.println("No se pueden listar los productos, lista vacia");
         }
         Utilidad.stopAndContinue();
     }
 
-    public void agregarCliente(String runCliente, String nombreCliente, String apellidoCliente, String aniosCliente, CategoriaEnum categoria) {
-        //crear un producto
-        Cliente cliente = new Cliente(runCliente, nombreCliente, apellidoCliente, aniosCliente, categoria);
-
-        //agregar producto a la lista
+    public String agregarCliente(Cliente cliente) {
         if (listaCliente != null) {
             listaCliente.add(cliente);
             cliente.mostrar();
         } else {
             System.out.println("El producto o la lista estan nulos, no se puede agregar");
         }
+        return "Cliente creado";
     }
 
     public Cliente buscarCliente(String rut) {
@@ -63,7 +58,7 @@ public class ClienteServicio {
         return null;
     }
 
-    public void editarCliente(String rut) {
+    public String editarCliente(String rut) {
         Scanner scanner = new Scanner(System.in);
         Cliente cliente = buscarCliente(rut);
         try {
@@ -105,6 +100,7 @@ public class ClienteServicio {
         } catch (Exception e) {
             System.out.println("Error: La lista esta vacia o no existe el rut");
         }
+        return "Cliente editado";
     }
 
     public void editarClienteCategoria(String rut) {

@@ -2,6 +2,7 @@ package vista;
 
 
 import modelo.CategoriaEnum;
+import modelo.Cliente;
 import servicio.*;
 import utilidades.Utilidad;
 
@@ -15,7 +16,7 @@ public class Menu {
 
     ClienteServicio clienteservicio = new ClienteServicio();
     ExportadorTxtCsv exportartxtcsv = new ExportadorTxtCsv();
-    ImportadorTxtCsv importarcsv = new ImportadorTxtCsv();
+    ImportadorTxtCsv importarcsv = new ImportadorTxtCsv(clienteservicio.getListaCliente());
     String filename = "Clientes";
     Scanner scanner = new Scanner(System.in);
 
@@ -67,8 +68,8 @@ public class Menu {
         String apellido = scanner.nextLine();
         System.out.println("Ingrese anios: ");
         String anios = scanner.nextLine();
-
-        clienteservicio.agregarCliente(rut, nombre, apellido, anios, CategoriaEnum.Activo);
+        Cliente clientenuevo = new Cliente(rut, nombre, apellido, anios, CategoriaEnum.Activo);
+        clienteservicio.agregarCliente(clientenuevo);
         Utilidad.stopAndContinue();
     }
 
